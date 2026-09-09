@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Gordito — Nuestro tiempo juntos</title>
+<title> Nuestra Historia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -177,8 +177,21 @@
   .letter-body p:last-child{ margin-bottom:0; text-align:right; font-style:italic; color:var(--gold-soft); }
   footer{ position:relative; z-index:1; text-align:center; padding:10px 20px 30px; color:var(--muted); font-size:.75rem; }
 </style>
+
+<style id="password-gate-style">
+#passwordGate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;background:linear-gradient(135deg,#fff0f5,#ffe4ec)}
+#passwordGate .gate-box{width:min(92vw,380px);padding:30px 24px;text-align:center;background:#fff;border-radius:24px;box-shadow:0 15px 45px rgba(0,0,0,.15)}
+#passwordGate h2{margin:0 0 10px;font-size:26px}
+#passwordGate p{margin:0 0 20px;color:#666}
+#passwordGate input{width:100%;box-sizing:border-box;padding:13px 15px;border:1px solid #ddd;border-radius:12px;font-size:16px;outline:none}
+#passwordGate button{width:100%;margin-top:12px;padding:13px 15px;border:0;border-radius:12px;font-size:16px;cursor:pointer;background:#e91e63;color:#fff}
+#passwordError{display:none;color:#d32f2f;margin:12px 0 0;font-size:14px}
+body.password-locked > *:not(#passwordGate){visibility:hidden}
+</style>
 </head>
-<body>
+<body class="password-locked">
+<div id="passwordGate"><div class="gate-box"><div style="font-size:42px;margin-bottom:8px;">❤️</div><h2>Un espacio especial</h2><p>Ingresa la contraseña para entrar.</p><input id="pagePassword" type="password" placeholder="Contraseña" autocomplete="off"><button onclick="unlockPage()">Entrar</button><div id="passwordError">Contraseña incorrecta.</div></div></div>
+
 
 <div class="stars"></div>
 <div class="outline-hearts">
@@ -188,11 +201,11 @@
 <div class="hearts" id="hearts"></div>
 
 <header>
-  <span class="brand">Mi Gordito</span>
+  <span class="brand">Gordito Mio</span>
 </header>
 
 <main>
-  <h1>Nuestro tiempo juntos</h1>
+  <h1>Nuestra Historia</h1>
 
   <div class="timer">
     <div class="unit"><span class="num" id="years">0</span><span class="label">años</span></div>
@@ -204,7 +217,7 @@
   </div>
 
   <div class="actions">
-    <button class="btn ghost" id="openAntes">La carta que escribí</button>
+    <button class="btn ghost" id="openAntes">Nuestro contacto cero</button>
     <button class="btn solid" id="openAhora">Hoy que volvemos a empezar</button>
   </div>
 </main>
@@ -217,7 +230,7 @@
     <button class="close" data-close>×</button>
     <h2>La carta que escribí</h2>
     <p class="letter-date">25 de abril</p>
-    <div class="letter-body">
+    <div class="letter-body"
       <p>Un 25 de abril le escribí una carta con toda la intención de dejarle ir, de dejarle libre y permitirle que fuera feliz. Había tomado esa decisión porque ni usted mismo sabía hacia, dónde iba, vivía en una confusión y, de alguna manera, eso me estaba afectando demasiado. Cuando empezamos con todo, acordamos que sería solo un juego y, sobre todo, que no involucraríamos sentimientos. A pesar de eso, y de que ambos teníamos claro que no podíamos sentir amor el uno por el otro, llegamos a un punto en el que todo se nos salió de las manos. Y, aun así, volvimos a tomar una decisión equivocada: seguir sin importar nada, aun sabiendo que todo podía empeorar cada vez más.</p>
       <p>De las tres veces que tuvimos problemas serios, al punto de dejar de hablarnos, lo que más me molestó la última vez fue que usted ya sabía lo que yo sentía, porque ya no pude contenerlo y se lo dije. A pesar de eso, no me permitió alejarme; por el contrario, me dijo que todo era mutuo y siguió dándome una atención que, para mí, significaba mucho más de lo que quizá usted imaginaba. Y, al final, terminó culpándome, diciéndome que yo sabía hasta dónde podíamos llegar, dejándome con la sensación de que solo yo había sido la confundida y la que había hecho todo mal, cuando ni usted mismo sabía qué hacer con su vida.</p>
       <p>Eso me dolió mucho, porque me hizo sentir como si, después de tanto tiempo y de tantas cosas que vivimos, la única que había desarrollado sentimientos hubiera sido yo; como si para usted nada de todo lo que pasó hubiera tenido realmente importancia.</p>
@@ -317,5 +330,11 @@
   });
 </script>
 
+
+<script id="password-gate-script">
+const PAGE_PASSWORD = "NuestroSecreto";
+function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError");if(input.value===PAGE_PASSWORD){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";sessionStorage.setItem("gorditoUnlocked","1");}else{error.style.display="block";input.value="";input.focus();}}
+document.addEventListener("DOMContentLoaded",()=>{const input=document.getElementById("pagePassword");if(sessionStorage.getItem("gorditoUnlocked")==="1"){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";}input.addEventListener("keydown",e=>{if(e.key==="Enter")unlockPage();});});
+</script>
 </body>
 </html>
