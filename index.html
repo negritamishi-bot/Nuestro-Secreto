@@ -145,12 +145,16 @@
   .code-body .str{ color:var(--gold); }
 
   /* modales */
+ .card p {
+  text-align: justify;
+}
   .modal{
     position:fixed; inset:0; z-index:10; display:none;
     align-items:center; justify-content:center;
     background:rgba(10,4,14,.72); backdrop-filter: blur(3px);
     padding:20px;
   }
+  
   .modal.open{ display:flex; }
   .modal-card{
     position:relative; width:100%; max-width:440px; max-height:82vh; overflow-y:auto;
