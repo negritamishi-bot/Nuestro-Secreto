@@ -332,7 +332,7 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
 
 
 <script id="password-gate-script">
-const PAGE_PASSWORD = "1234";
+const PAGE_PASSWORD = "NuestroSecreto";
 function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError");if(input.value===PAGE_PASSWORD){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";sessionStorage.setItem("gorditoUnlocked","1");}else{error.style.display="block";input.value="";input.focus();}}
 document.addEventListener("DOMContentLoaded",()=>{const input=document.getElementById("pagePassword");if(sessionStorage.getItem("gorditoUnlocked")==="1"){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";}input.addEventListener("keydown",e=>{if(e.key==="Enter")unlockPage();});});
 </script>
