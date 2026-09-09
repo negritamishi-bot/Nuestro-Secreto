@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>Mi Gordito — Nuestro tiempo juntos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -178,6 +178,14 @@
   footer{ position:relative; z-index:1; text-align:center; padding:10px 20px 30px; color:var(--muted); font-size:.75rem; }
 </style>
 
+<style id="romantic-effects-style">
+.btn{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;will-change:transform}.btn:active{transform:scale(.95);box-shadow:0 3px 12px rgba(224,80,122,.35)}.btn.pressed{animation:buttonPulse .48s ease-out}@keyframes buttonPulse{0%{transform:scale(1)}35%{transform:scale(.94)}70%{transform:scale(1.035)}100%{transform:scale(1)}}
+.sparkle-burst,.heart-burst{position:fixed;z-index:100001;pointer-events:none}.sparkle-burst{font-size:14px;animation:sparkleFly .75s ease-out forwards}.heart-burst{font-size:clamp(18px,5vw,30px);animation:heartBurst 1.25s cubic-bezier(.15,.75,.25,1) forwards}@keyframes sparkleFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.25) rotate(120deg)}}@keyframes heartBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}12%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.85) rotate(var(--rot))}}
+#passwordGate.unlocking{animation:gateRomance .95s ease-in-out forwards}#passwordGate.unlocking .gate-box{animation:heartUnlock .8s cubic-bezier(.2,.8,.2,1)}@keyframes heartUnlock{0%{transform:scale(1);opacity:1}25%{transform:scale(1.08) rotate(-2deg)}50%{transform:scale(.98) rotate(2deg)}75%{transform:scale(1.04)}100%{transform:scale(.7);opacity:0}}@keyframes gateRomance{0%{opacity:1}65%{opacity:1}100%{opacity:0;visibility:hidden}}
+body.revealing main,body.revealing header,body.revealing footer,body.revealing .code-deco{animation:contentReveal .95s cubic-bezier(.16,1,.3,1) both}@keyframes contentReveal{from{opacity:0;transform:translateY(22px);filter:brightness(1.8) blur(5px)}55%{opacity:1;filter:brightness(1.35) blur(1px)}to{opacity:1;transform:none;filter:none}}body.revealing::after{content:"";position:fixed;inset:0;z-index:99998;pointer-events:none;background:radial-gradient(circle,rgba(255,220,235,.7),transparent 28%);animation:screenGlow 1s ease-out forwards}@keyframes screenGlow{from{opacity:0}25%{opacity:1}to{opacity:0}}
+.modal.open .modal-card{animation:letterIn .62s cubic-bezier(.16,1,.3,1) both}.modal.open .letter-body p{animation:letterTextIn .5s ease-out both}.modal.open .letter-body p:nth-child(1){animation-delay:.08s}.modal.open .letter-body p:nth-child(2){animation-delay:.13s}.modal.open .letter-body p:nth-child(3){animation-delay:.18s}.modal.open .letter-body p:nth-child(4){animation-delay:.23s}@keyframes letterIn{from{opacity:0;transform:translateY(35px) scale(.9) rotateX(8deg)}to{opacity:1;transform:none}}@keyframes letterTextIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.modal-card.letter-open{animation:letterOpenSpecial .75s ease-out}@keyframes letterOpenSpecial{0%{box-shadow:0 0 0 rgba(224,80,122,0)}35%{box-shadow:0 0 45px rgba(224,80,122,.5),0 0 80px rgba(217,163,74,.2)}100%{box-shadow:0 20px 50px -25px rgba(0,0,0,.6)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
 <style id="password-gate-style">
 #passwordGate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;background:linear-gradient(135deg,#fff0f5,#ffe4ec)}
 #passwordGate .gate-box{width:min(92vw,380px);padding:30px 24px;text-align:center;background:#fff;border-radius:24px;box-shadow:0 15px 45px rgba(0,0,0,.15)}
@@ -316,25 +324,33 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
     heartsContainer.appendChild(s);
   }
 
-  function openModal(id){ document.getElementById(id).classList.add('open'); }
-  function closeModal(el){ el.classList.remove('open'); }
-
-  document.getElementById('openAntes').addEventListener('click', ()=>openModal('modalAntes'));
-  document.getElementById('openAhora').addEventListener('click', ()=>openModal('modalAhora'));
-
-  document.querySelectorAll('.modal').forEach(m=>{
-    m.addEventListener('click', (e)=>{ if(e.target === m) closeModal(m); });
-  });
-  document.querySelectorAll('[data-close]').forEach(btn=>{
-    btn.addEventListener('click', (e)=> closeModal(e.target.closest('.modal')));
-  });
+  function burstAt(x,y,type='sparkle'){
+    const symbols=type==='heart'?['♥','♡','💖','💕']:['✦','✧','⋆','✨'];
+    const count=type==='heart'?14:9;
+    for(let i=0;i<count;i++){
+      const el=document.createElement('span'); el.className=type==='heart'?'heart-burst':'sparkle-burst';
+      el.textContent=symbols[Math.floor(Math.random()*symbols.length)]; el.style.left=x+'px'; el.style.top=y+'px';
+      const a=(Math.PI*2*i/count)+(Math.random()-.5)*.45, d=(type==='heart'?70:48)+Math.random()*55;
+      el.style.setProperty('--dx',Math.cos(a)*d+'px'); el.style.setProperty('--dy',Math.sin(a)*d+'px'); el.style.setProperty('--rot',((Math.random()-.5)*70)+'deg');
+      document.body.appendChild(el); setTimeout(()=>el.remove(),1400);
+    }
+  }
+  function buttonTouchFeedback(btn,e){const r=btn.getBoundingClientRect();const x=e.clientX??(r.left+r.width/2),y=e.clientY??(r.top+r.height/2);btn.classList.remove('pressed');void btn.offsetWidth;btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),520);burstAt(x,y,'sparkle');}
+  function openModal(id,sourceButton){const modal=document.getElementById(id);modal.classList.add('open');const card=modal.querySelector('.modal-card');card.classList.remove('letter-open');void card.offsetWidth;card.classList.add('letter-open');const r=(sourceButton||card).getBoundingClientRect();burstAt(r.left+r.width/2,r.top+r.height/2,'heart');}
+  function closeModal(el){el.classList.remove('open');}
+  const antesBtn=document.getElementById('openAntes'),ahoraBtn=document.getElementById('openAhora');
+  [antesBtn,ahoraBtn].forEach(btn=>btn.addEventListener('pointerdown',e=>buttonTouchFeedback(btn,e),{passive:true}));
+  antesBtn.addEventListener('click',()=>openModal('modalAntes',antesBtn)); ahoraBtn.addEventListener('click',()=>openModal('modalAhora',ahoraBtn));
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m)}));
+  document.querySelectorAll('[data-close]').forEach(btn=>{btn.addEventListener('pointerdown',e=>buttonTouchFeedback(btn,e),{passive:true});btn.addEventListener('click',e=>closeModal(e.target.closest('.modal')))});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(closeModal);});
 </script>
 
 
 <script id="password-gate-script">
 const PAGE_PASSWORD = "NuestroSecreto";
-function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError");if(input.value===PAGE_PASSWORD){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";sessionStorage.setItem("gorditoUnlocked","1");}else{error.style.display="block";input.value="";input.focus();}}
-document.addEventListener("DOMContentLoaded",()=>{const input=document.getElementById("pagePassword");if(sessionStorage.getItem("gorditoUnlocked")==="1"){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";}input.addEventListener("keydown",e=>{if(e.key==="Enter")unlockPage();});});
+function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError"),gate=document.getElementById("passwordGate"),button=gate.querySelector('button');if(input.value===PAGE_PASSWORD){if(gate.classList.contains('unlocking'))return;const r=button.getBoundingClientRect();burstAt(r.left+r.width/2,r.top+r.height/2,'heart');gate.classList.add('unlocking');document.body.classList.remove('password-locked');document.body.classList.add('revealing');sessionStorage.setItem('gorditoUnlocked','1');setTimeout(()=>{gate.style.display='none';document.body.classList.remove('revealing');},950);}else{error.style.display='block';input.value='';input.focus();gate.querySelector('.gate-box').animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:280,easing:'ease-out'});}}
+document.addEventListener('DOMContentLoaded',()=>{const input=document.getElementById('pagePassword');if(sessionStorage.getItem('gorditoUnlocked')==='1'){document.body.classList.remove('password-locked');document.getElementById('passwordGate').style.display='none';}input.addEventListener('keydown',e=>{if(e.key==='Enter')unlockPage();});const gateButton=document.querySelector('#passwordGate button');gateButton.addEventListener('pointerdown',e=>buttonTouchFeedback(gateButton,e),{passive:true});});
 </script>
 </body>
 </html>
