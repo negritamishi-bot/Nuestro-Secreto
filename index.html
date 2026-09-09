@@ -348,7 +348,7 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
 
 
 <script id="password-gate-script">
-const PAGE_PASSWORD = "NuestroSecreto";
+const PAGE_PASSWORD = "2022";
 function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError"),gate=document.getElementById("passwordGate"),button=gate.querySelector('button');if(input.value===PAGE_PASSWORD){if(gate.classList.contains('unlocking'))return;const r=button.getBoundingClientRect();burstAt(r.left+r.width/2,r.top+r.height/2,'heart');gate.classList.add('unlocking');document.body.classList.remove('password-locked');document.body.classList.add('revealing');sessionStorage.setItem('gorditoUnlocked','1');setTimeout(()=>{gate.style.display='none';document.body.classList.remove('revealing');},950);}else{error.style.display='block';input.value='';input.focus();gate.querySelector('.gate-box').animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:280,easing:'ease-out'});}}
 document.addEventListener('DOMContentLoaded',()=>{const input=document.getElementById('pagePassword');if(sessionStorage.getItem('gorditoUnlocked')==='1'){document.body.classList.remove('password-locked');document.getElementById('passwordGate').style.display='none';}input.addEventListener('keydown',e=>{if(e.key==='Enter')unlockPage();});const gateButton=document.querySelector('#passwordGate button');gateButton.addEventListener('pointerdown',e=>buttonTouchFeedback(gateButton,e),{passive:true});});
 </script>
