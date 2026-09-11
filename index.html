@@ -156,7 +156,7 @@
     position:relative; width:100%; max-width:440px; max-height:82vh; overflow-y:auto;
     background: linear-gradient(180deg, var(--bg-soft), var(--bg));
     border:1px solid var(--line); border-radius:16px;
-    padding:32px 26px 28px; text-align:left;
+    padding:32px 26px 28px; text-align:justify;
   }
   .modal-card .close{
     position:absolute; top:12px; right:14px; background:none; border:none;
@@ -248,8 +248,8 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
 <div id="startScreen" aria-label="Pantalla de inicio">
   <div class="start-glow"></div>
   <div class="start-heart">♥</div>
-  <h2>Para ti, mi amor</h2>
-  <p>Hay algo que preparé especialmente para ti…</p>
+  <h2>Mi corazón</h2>
+  <p>Hay algo que preparé especialmente para usted… Un super chisme y le involucra</p>
   <button id="startButton" type="button">♥ Comenzar</button>
 </div>
 <audio id="loveSong" preload="auto" playsinline>
@@ -261,8 +261,8 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
   <div class="intro-hearts" id="introHearts"></div>
   <div class="intro-box">
     <div class="intro-heart">♥</div>
-    <h2>Para ti, mi gordito</h2>
-    <p>Toca el corazón para comenzar nuestra historia ❤️</p>
+    <h2>Mi gordito</h2>
+    <p>Toca el corazón para comenzar❤️</p>
     <button id="startExperience">♥&nbsp; Comenzar</button>
     <audio id="loveSong" preload="auto" loop>
       <source src="musica.mp3" type="audio/mpeg">
@@ -412,7 +412,7 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
 
 
 <script id="password-gate-script">
-const PAGE_PASSWORD = "NuestroSecreto";
+const PAGE_PASSWORD = "2022";
 function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError");if(input.value===PAGE_PASSWORD){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";sessionStorage.setItem("gorditoUnlocked","1");}else{error.style.display="block";input.value="";input.focus();}}
 document.addEventListener("DOMContentLoaded",()=>{const input=document.getElementById("pagePassword");if(sessionStorage.getItem("gorditoUnlocked")==="1"){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";}input.addEventListener("keydown",e=>{if(e.key==="Enter")unlockPage();});});
 </script>
