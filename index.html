@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Gordito — Nuestro tiempo juntos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,7 +151,6 @@
     background:rgba(10,4,14,.72); backdrop-filter: blur(3px);
     padding:20px;
   }
-  
   .modal.open{ display:flex; }
   .modal-card{
     position:relative; width:100%; max-width:440px; max-height:82vh; overflow-y:auto;
@@ -173,20 +172,12 @@
   }
   .letter-body p{
     font-family:'Fraunces', serif; font-size:1.02rem; line-height:1.7;
-    color:var(--cream); margin:0 0 14px; text-align: justify;
+    color:var(--cream); margin:0 0 14px;
   }
   .letter-body p:last-child{ margin-bottom:0; text-align:right; font-style:italic; color:var(--gold-soft); }
   footer{ position:relative; z-index:1; text-align:center; padding:10px 20px 30px; color:var(--muted); font-size:.75rem; }
 </style>
 
-<style id="romantic-effects-style">
-.btn{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;will-change:transform}.btn:active{transform:scale(.95);box-shadow:0 3px 12px rgba(224,80,122,.35)}.btn.pressed{animation:buttonPulse .48s ease-out}@keyframes buttonPulse{0%{transform:scale(1)}35%{transform:scale(.94)}70%{transform:scale(1.035)}100%{transform:scale(1)}}
-.sparkle-burst,.heart-burst{position:fixed;z-index:100001;pointer-events:none}.sparkle-burst{font-size:14px;animation:sparkleFly .75s ease-out forwards}.heart-burst{font-size:clamp(18px,5vw,30px);animation:heartBurst 1.25s cubic-bezier(.15,.75,.25,1) forwards}@keyframes sparkleFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.25) rotate(120deg)}}@keyframes heartBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}12%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.85) rotate(var(--rot))}}
-#passwordGate.unlocking{animation:gateRomance .95s ease-in-out forwards}#passwordGate.unlocking .gate-box{animation:heartUnlock .8s cubic-bezier(.2,.8,.2,1)}@keyframes heartUnlock{0%{transform:scale(1);opacity:1}25%{transform:scale(1.08) rotate(-2deg)}50%{transform:scale(.98) rotate(2deg)}75%{transform:scale(1.04)}100%{transform:scale(.7);opacity:0}}@keyframes gateRomance{0%{opacity:1}65%{opacity:1}100%{opacity:0;visibility:hidden}}
-body.revealing main,body.revealing header,body.revealing footer,body.revealing .code-deco{animation:contentReveal .95s cubic-bezier(.16,1,.3,1) both}@keyframes contentReveal{from{opacity:0;transform:translateY(22px);filter:brightness(1.8) blur(5px)}55%{opacity:1;filter:brightness(1.35) blur(1px)}to{opacity:1;transform:none;filter:none}}body.revealing::after{content:"";position:fixed;inset:0;z-index:99998;pointer-events:none;background:radial-gradient(circle,rgba(255,220,235,.7),transparent 28%);animation:screenGlow 1s ease-out forwards}@keyframes screenGlow{from{opacity:0}25%{opacity:1}to{opacity:0}}
-.modal.open .modal-card{animation:letterIn .62s cubic-bezier(.16,1,.3,1) both}.modal.open .letter-body p{animation:letterTextIn .5s ease-out both}.modal.open .letter-body p:nth-child(1){animation-delay:.08s}.modal.open .letter-body p:nth-child(2){animation-delay:.13s}.modal.open .letter-body p:nth-child(3){animation-delay:.18s}.modal.open .letter-body p:nth-child(4){animation-delay:.23s}@keyframes letterIn{from{opacity:0;transform:translateY(35px) scale(.9) rotateX(8deg)}to{opacity:1;transform:none}}@keyframes letterTextIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.modal-card.letter-open{animation:letterOpenSpecial .75s ease-out}@keyframes letterOpenSpecial{0%{box-shadow:0 0 0 rgba(224,80,122,0)}35%{box-shadow:0 0 45px rgba(224,80,122,.5),0 0 80px rgba(217,163,74,.2)}100%{box-shadow:0 20px 50px -25px rgba(0,0,0,.6)}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
-</style>
 <style id="password-gate-style">
 #passwordGate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;background:linear-gradient(135deg,#fff0f5,#ffe4ec)}
 #passwordGate .gate-box{width:min(92vw,380px);padding:30px 24px;text-align:center;background:#fff;border-radius:24px;box-shadow:0 15px 45px rgba(0,0,0,.15)}
@@ -197,8 +188,88 @@ body.revealing main,body.revealing header,body.revealing footer,body.revealing .
 #passwordError{display:none;color:#d32f2f;margin:12px 0 0;font-size:14px}
 body.password-locked > *:not(#passwordGate){visibility:hidden}
 </style>
+
+<style id="music-intro-style">
+#musicIntro{position:fixed;inset:0;z-index:100002;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 35%,rgba(240,138,164,.28),transparent 35%),linear-gradient(135deg,#17071c,#401039 55%,#17071c);overflow:hidden}
+.intro-box{position:relative;z-index:2;width:min(92vw,400px);padding:34px 24px;text-align:center;border:1px solid rgba(240,201,135,.3);border-radius:28px;background:rgba(35,10,39,.78);backdrop-filter:blur(10px);box-shadow:0 25px 70px rgba(0,0,0,.4);animation:introBox 1.1s ease both}
+.intro-heart{font-size:76px;color:#f08aa4;line-height:1;text-shadow:0 0 28px rgba(240,138,164,.75);animation:introBeat 1.1s ease-in-out infinite}
+.intro-box h2{font-family:'Fraunces',serif;font-size:2rem;color:#f0c987;margin:18px 0 8px}
+.intro-box p{color:#f7ece0;margin:0 auto 22px;line-height:1.5}
+#startExperience{border:0;border-radius:999px;padding:14px 32px;font-size:1rem;font-weight:700;color:#1f0d14;background:linear-gradient(120deg,#f08aa4,#f0c987);box-shadow:0 10px 30px rgba(224,80,122,.3);cursor:pointer;transition:transform .2s ease}
+#startExperience:active{transform:scale(.92)}
+.intro-hearts span{position:absolute;bottom:-40px;color:#f08aa4;animation:introFloat 5s linear forwards;opacity:0}
+@keyframes introBox{from{opacity:0;transform:translateY(25px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes introBeat{0%,100%{transform:scale(1)}35%{transform:scale(1.15)}55%{transform:scale(.98)}}
+@keyframes introFloat{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:.8}100%{transform:translateY(-115vh) rotate(25deg) scale(1.2);opacity:0}}
+.music-started #musicIntro{animation:introOut .9s ease forwards;pointer-events:none}
+@keyframes introOut{to{opacity:0;transform:scale(1.05);visibility:hidden}}
+</style>
+
+
+<style id="start-screen-style">
+#startScreen{
+  position:fixed; inset:0; z-index:200000; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; padding:28px;
+  background:radial-gradient(circle at 50% 42%,rgba(224,80,122,.28),transparent 34%),
+             linear-gradient(145deg,#18071d,#3b0d3b 55%,#130615);
+  color:#f7ece0; overflow:hidden;
+}
+#startScreen .start-glow{
+  position:absolute; width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(240,138,164,.25),transparent 68%);
+  animation:startPulse 2s ease-in-out infinite alternate;
+}
+#startScreen .start-heart{
+  position:relative; z-index:2; font-size:78px; color:#f08aa4;
+  text-shadow:0 0 25px rgba(240,138,164,.75);
+  animation:startBeat 1.15s ease-in-out infinite;
+}
+#startScreen h2{
+  position:relative;z-index:2;font-family:'Fraunces',serif;
+  font-size:clamp(2rem,9vw,3rem);margin:8px 0;color:#f0c987;
+}
+#startScreen p{position:relative;z-index:2;max-width:310px;color:#e9cedf;margin:0 0 24px}
+#startButton{
+  position:relative;z-index:2;border:0;border-radius:999px;padding:15px 34px;
+  font:600 1rem 'Karla',sans-serif;cursor:pointer;color:#fff;
+  background:linear-gradient(120deg,#e0507a,#d9a34a);
+  box-shadow:0 10px 30px rgba(224,80,122,.35);
+  transition:transform .18s ease,filter .2s ease;
+}
+#startButton:active{transform:scale(.94)}
+#startScreen.start-hide{animation:startOut .75s ease forwards;pointer-events:none}
+@keyframes startPulse{from{transform:scale(.8);opacity:.5}to{transform:scale(1.2);opacity:1}}
+@keyframes startBeat{0%,100%{transform:scale(1)}35%{transform:scale(1.15)}55%{transform:scale(.98)}}
+@keyframes startOut{to{opacity:0;visibility:hidden;transform:scale(1.08)}}
+</style>
+
 </head>
-<body class="password-locked">
+
+<div id="startScreen" aria-label="Pantalla de inicio">
+  <div class="start-glow"></div>
+  <div class="start-heart">♥</div>
+  <h2>Para ti, mi amor</h2>
+  <p>Hay algo que preparé especialmente para ti…</p>
+  <button id="startButton" type="button">♥ Comenzar</button>
+</div>
+<audio id="loveSong" preload="auto" playsinline>
+  <source src="Real-Amor.m4a" type="audio/mp4">
+</audio>
+
+<body class="password-locked start-locked">
+<div id="musicIntro">
+  <div class="intro-hearts" id="introHearts"></div>
+  <div class="intro-box">
+    <div class="intro-heart">♥</div>
+    <h2>Para ti, mi gordito</h2>
+    <p>Toca el corazón para comenzar nuestra historia ❤️</p>
+    <button id="startExperience">♥&nbsp; Comenzar</button>
+    <audio id="loveSong" preload="auto" loop>
+      <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
 <div id="passwordGate"><div class="gate-box"><div style="font-size:42px;margin-bottom:8px;">❤️</div><h2>Un espacio especial</h2><p>Ingresa la contraseña para entrar.</p><input id="pagePassword" type="password" placeholder="Contraseña" autocomplete="off"><button onclick="unlockPage()">Entrar</button><div id="passwordError">Contraseña incorrecta.</div></div></div>
 
 
@@ -240,7 +311,7 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
     <h2>La carta que escribí</h2>
     <p class="letter-date">25 de abril</p>
     <div class="letter-body">
-      <p>Un 25 de abril le escribí una carta con toda la intención de dejarle ir, de dejarle libre y permitirle que fuera feliz. Había tomado esa decisión porque ni usted mismo sabía hacia dónde iba, vivía en una confusión y, de alguna manera, eso me estaba afectando demasiado. Cuando empezamos con todo, acordamos que sería solo un juego y, sobre todo, que no involucraríamos sentimientos. A pesar de eso, y de que ambos teníamos claro que no podíamos sentir amor el uno por el otro, llegamos a un punto en el que todo se nos salió de las manos. Y, aun así, volvimos a tomar una decisión equivocada: seguir sin importar nada, aun sabiendo que todo podía empeorar cada vez más.</p>
+      <p>Un 25 de abril le escribí una carta con toda la intención de dejarle ir, de dejarle libre y permitirle que fuera feliz. Había tomado esa decisión porque ni usted mismo sabía hacia, dónde iba, vivía en una confusión y, de alguna manera, eso me estaba afectando demasiado. Cuando empezamos con todo, acordamos que sería solo un juego y, sobre todo, que no involucraríamos sentimientos. A pesar de eso, y de que ambos teníamos claro que no podíamos sentir amor el uno por el otro, llegamos a un punto en el que todo se nos salió de las manos. Y, aun así, volvimos a tomar una decisión equivocada: seguir sin importar nada, aun sabiendo que todo podía empeorar cada vez más.</p>
       <p>De las tres veces que tuvimos problemas serios, al punto de dejar de hablarnos, lo que más me molestó la última vez fue que usted ya sabía lo que yo sentía, porque ya no pude contenerlo y se lo dije. A pesar de eso, no me permitió alejarme; por el contrario, me dijo que todo era mutuo y siguió dándome una atención que, para mí, significaba mucho más de lo que quizá usted imaginaba. Y, al final, terminó culpándome, diciéndome que yo sabía hasta dónde podíamos llegar, dejándome con la sensación de que solo yo había sido la confundida y la que había hecho todo mal, cuando ni usted mismo sabía qué hacer con su vida.</p>
       <p>Eso me dolió mucho, porque me hizo sentir como si, después de tanto tiempo y de tantas cosas que vivimos, la única que había desarrollado sentimientos hubiera sido yo; como si para usted nada de todo lo que pasó hubiera tenido realmente importancia.</p>
       <p>Cuando escribí aquella carta, incluso llegué a arrepentirme. Pensaba en todo lo que hice por usted y sabía que muchas de esas cosas nunca me las pidió, y tenía razón en eso y la seguirá teniendo. Aun así, muchas veces sentí que se aprovechaba de todo aquello, y también sentía que minimizaba mis sentimientos por algunas de las cosas que hacía y por la manera en que muchas veces me trataba.</p>
@@ -272,17 +343,6 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
       <p>Aun con todo el miedo, le espero por las ganas que tengo de tener algo bonito, y más aún porque, de verdad, quiero que sea usted.</p>
       <p>Ahora ya no quiero pensar en lo malo. Quiero pensar en todo lo bonito, en todas las veces que estuvo y está para mí cuando más lo necesito, en cómo me consiente y en todas esas pequeñas cosas que hace para verme feliz.</p>
       <p>Estoy tratando de confiar. Solo le pido que no me falle. Y si de verdad no soy lo que quiere, espero que me lo diga, porque usted sabe cuánto me molesta que no me diga lo que piensa.</p>
-      <p>No sé si alguna vez existirán palabras suficientes para explicarle todo lo que siento, porque lo que provoca en mí va mucho más allá de lo que puedo expresar. Desde que llego a mi vida, ya nada volvió a ser igual. Llego sin avisar y termino convirtiéndose en una parte de mí que no quiero imaginar sin usted.</p>
-      <p>Con usted descubrí que amar no es solamente sentir mariposas, sonreír o compartir momentos bonitos. Amar también es quedarse cuando llegan los días difíciles, abrazarnos cuando no tenemos respuestas, tener paciencia, perdonarnos, apoyarnos y seguir eligiéndonos incluso cuando la vida no es perfecta.</p>
-      <p>Y yo le elijo. Le elijo en los días buenos y en los malos. Le elijo cuando todo está bien y cuando tenemos que luchar un poco más. Le elijo hoy, y volvería a elegirle en cada vida, en cada historia y en cada oportunidad que tuviera de encontrarle</p>
-      <p>Es mucho más que lo que decidimos ser. Es mi mejor amigo, mi refugio, mi persona favorita, aquel con quien quisiera compartir mis alegrías, mis miedos, mis sueños y hasta mis silencios. Amo su sonrisa, su forma de mirarme con ese lunarcito, su manera de querer, sus pequeños detalles y hasta esas cosas que quizás no considera especiales, pero que para mí le hacen único.</p>
-      <p>Me encanta saber que existe alguien en este mundo con quien puedo ser completamente yo. Alguien a quien puedo mirar y sentir que estoy exactamente donde quiero estar. Porque cuando estoy con usted, siento esa tranquilidad de haber encontrado mi lugar.</p>
-      <p>Quisiera vivir muchas cosas a su lado. Quisiera verle cumplir sus sueños y estar ahí para celebrar cada uno de ellos. Quisiera que tengamos historias que contar, fotografías que recordar, viajes que nos sorprendan, noches interminables hablando de cualquier cosa y mañanas en las que simplemente despertar juntos sea suficiente</p>
-      <p>No le prometo una vida perfecta, porque sé que habrá días difíciles. Pero sí puedo prometerle que mientras esté en mis manos, voy a cuidar de nosotros. Voy a cuidar su corazón, nuestro amor y todo aquello que podamos construir. Quiero empezar a aprender a amarle de la manera que merece y a demostrarle, con hechos, lo importante que es para mí.</p>
-      <p>Gracias por llegar a mi vida. Gracias por quedarse. Gracias por confiar en mí, por compartir su mundo conmigo y por permitirme formar parte del suyo.</p>
-      <p>Si algún día me preguntaran qué fue lo más bonito que me pasó en la vida, no tendría que pensarlo demasiado: fue conocerle.</p>
-      <p>Y si pudiera pedirle algo al tiempo, no pediría que se detuviera. Pediría que me permita vivir muchos años con usted, para amarle, descubrirle y enamorárme de usted una y otra vez.</p>
-      <p>Quiero amarle por quien es, por quien soy cuando estoy con usted y por todo lo que todavía nos queda por vivir. Todo eso si me lo permite.</p>
       <p>Deseo mucho hacerle feliz mi gordito hermoso.</p>
     </div>
   </div>
@@ -336,33 +396,84 @@ body.password-locked > *:not(#passwordGate){visibility:hidden}
     heartsContainer.appendChild(s);
   }
 
-  function burstAt(x,y,type='sparkle'){
-    const symbols=type==='heart'?['♥','♡','💖','💕']:['✦','✧','⋆','✨'];
-    const count=type==='heart'?14:9;
-    for(let i=0;i<count;i++){
-      const el=document.createElement('span'); el.className=type==='heart'?'heart-burst':'sparkle-burst';
-      el.textContent=symbols[Math.floor(Math.random()*symbols.length)]; el.style.left=x+'px'; el.style.top=y+'px';
-      const a=(Math.PI*2*i/count)+(Math.random()-.5)*.45, d=(type==='heart'?70:48)+Math.random()*55;
-      el.style.setProperty('--dx',Math.cos(a)*d+'px'); el.style.setProperty('--dy',Math.sin(a)*d+'px'); el.style.setProperty('--rot',((Math.random()-.5)*70)+'deg');
-      document.body.appendChild(el); setTimeout(()=>el.remove(),1400);
-    }
-  }
-  function buttonTouchFeedback(btn,e){const r=btn.getBoundingClientRect();const x=e.clientX??(r.left+r.width/2),y=e.clientY??(r.top+r.height/2);btn.classList.remove('pressed');void btn.offsetWidth;btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),520);burstAt(x,y,'sparkle');}
-  function openModal(id,sourceButton){const modal=document.getElementById(id);modal.classList.add('open');const card=modal.querySelector('.modal-card');card.classList.remove('letter-open');void card.offsetWidth;card.classList.add('letter-open');const r=(sourceButton||card).getBoundingClientRect();burstAt(r.left+r.width/2,r.top+r.height/2,'heart');}
-  function closeModal(el){el.classList.remove('open');}
-  const antesBtn=document.getElementById('openAntes'),ahoraBtn=document.getElementById('openAhora');
-  [antesBtn,ahoraBtn].forEach(btn=>btn.addEventListener('pointerdown',e=>buttonTouchFeedback(btn,e),{passive:true}));
-  antesBtn.addEventListener('click',()=>openModal('modalAntes',antesBtn)); ahoraBtn.addEventListener('click',()=>openModal('modalAhora',ahoraBtn));
-  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m)}));
-  document.querySelectorAll('[data-close]').forEach(btn=>{btn.addEventListener('pointerdown',e=>buttonTouchFeedback(btn,e),{passive:true});btn.addEventListener('click',e=>closeModal(e.target.closest('.modal')))});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(closeModal);});
+  function openModal(id){ document.getElementById(id).classList.add('open'); }
+  function closeModal(el){ el.classList.remove('open'); }
+
+  document.getElementById('openAntes').addEventListener('click', ()=>openModal('modalAntes'));
+  document.getElementById('openAhora').addEventListener('click', ()=>openModal('modalAhora'));
+
+  document.querySelectorAll('.modal').forEach(m=>{
+    m.addEventListener('click', (e)=>{ if(e.target === m) closeModal(m); });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn=>{
+    btn.addEventListener('click', (e)=> closeModal(e.target.closest('.modal')));
+  });
 </script>
 
 
 <script id="password-gate-script">
-const PAGE_PASSWORD = "2022";
-function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError"),gate=document.getElementById("passwordGate"),button=gate.querySelector('button');if(input.value===PAGE_PASSWORD){if(gate.classList.contains('unlocking'))return;const r=button.getBoundingClientRect();burstAt(r.left+r.width/2,r.top+r.height/2,'heart');gate.classList.add('unlocking');document.body.classList.remove('password-locked');document.body.classList.add('revealing');sessionStorage.setItem('gorditoUnlocked','1');setTimeout(()=>{gate.style.display='none';document.body.classList.remove('revealing');},950);}else{error.style.display='block';input.value='';input.focus();gate.querySelector('.gate-box').animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:280,easing:'ease-out'});}}
-document.addEventListener('DOMContentLoaded',()=>{const input=document.getElementById('pagePassword');if(sessionStorage.getItem('gorditoUnlocked')==='1'){document.body.classList.remove('password-locked');document.getElementById('passwordGate').style.display='none';}input.addEventListener('keydown',e=>{if(e.key==='Enter')unlockPage();});const gateButton=document.querySelector('#passwordGate button');gateButton.addEventListener('pointerdown',e=>buttonTouchFeedback(gateButton,e),{passive:true});});
+const PAGE_PASSWORD = "NuestroSecreto";
+function unlockPage(){const input=document.getElementById("pagePassword"),error=document.getElementById("passwordError");if(input.value===PAGE_PASSWORD){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";sessionStorage.setItem("gorditoUnlocked","1");}else{error.style.display="block";input.value="";input.focus();}}
+document.addEventListener("DOMContentLoaded",()=>{const input=document.getElementById("pagePassword");if(sessionStorage.getItem("gorditoUnlocked")==="1"){document.body.classList.remove("password-locked");document.getElementById("passwordGate").style.display="none";}input.addEventListener("keydown",e=>{if(e.key==="Enter")unlockPage();});});
 </script>
+
+<script id="music-intro-script">
+(function(){
+  const intro=document.getElementById('musicIntro');
+  const btn=document.getElementById('startExperience');
+  const song=document.getElementById('loveSong');
+  const hc=document.getElementById('introHearts');
+  if(!intro||!btn||!song) return;
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span'); s.textContent=Math.random()>.25?'♥':'♡';
+    s.style.left=Math.random()*100+'vw'; s.style.fontSize=(18+Math.random()*30)+'px';
+    s.style.animationDelay=(Math.random()*4)+'s'; hc.appendChild(s);
+  }
+  btn.addEventListener('click', async ()=>{
+    try{ song.volume=.65; await song.play(); }catch(e){}
+    document.body.classList.add('music-started');
+    setTimeout(()=>{intro.style.display='none';},950);
+    const input=document.getElementById('pagePassword');
+    if(input) setTimeout(()=>input.focus(),1000);
+  },{once:true});
+})();
+</script>
+
+
+<script id="start-screen-script">
+document.addEventListener("DOMContentLoaded", function(){
+  const screen = document.getElementById("startScreen");
+  const button = document.getElementById("startButton");
+  const song = document.getElementById("loveSong");
+
+  if(!screen || !button || !song) return;
+
+  button.addEventListener("click", async function(){
+    button.disabled = true;
+
+    // The audio play call is made directly from the click gesture.
+    try {
+      song.currentTime = 0;
+      await song.play();
+    } catch (err) {
+      // If the browser refuses playback, continue to the password page anyway.
+      console.warn("No se pudo iniciar el audio:", err);
+    }
+
+    document.body.classList.remove("start-locked");
+    screen.classList.add("start-hide");
+
+    // Give the romantic intro time to transition into the password gate.
+    setTimeout(function(){
+      screen.remove();
+      const input = document.getElementById("pagePassword");
+      if(input && document.body.classList.contains("password-locked")){
+        input.focus();
+      }
+    }, 750);
+  });
+});
+</script>
+
 </body>
 </html>
